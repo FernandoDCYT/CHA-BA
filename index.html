@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button onclick="toggleSeccion()">Mostrar/Ocultar Sección</button>
+    
     <div id="contenedor">
         <div class="container">
             <div class="titulo">Bienvenida Armario</div>
@@ -199,14 +199,6 @@ Regaleme sus datos de la siguiente manera para agendarte:
             navigator.clipboard.writeText(resumen).catch(err => {
                 console.error("Error al copiar resumen: ", err);
             });
-        function toggleSeccion() {
-            const contenedor = document.getElementById('contenedor');
-            if (contenedor.style.display === 'none') {
-                contenedor.style.display = 'block';
-            } else {
-                contenedor.style.display = 'none';
-            }
-             
         }
         // Código para hacer la caja movible
 const box = document.querySelector('.bienvenida-box');
