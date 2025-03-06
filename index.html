@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <button onclick="toggleSeccion()">Mostrar/Ocultar Sección</button>
     <div id="contenedor">
         <div class="container">
             <div class="titulo">Bienvenida Armario</div>
@@ -173,7 +174,7 @@ Regaleme sus datos de la siguiente manera para agendarte:
             listaProductos.innerHTML = '';
             productos.forEach(producto => {
                 const li = document.createElement('li');
-                li.textContent = `${producto.nombre}: $${producto.precio.toFixed(2)}`;
+                li.textContent = `${producto.nombre}: $${producto.precio}`;
                 listaProductos.appendChild(li);
             });
         }
@@ -182,22 +183,30 @@ Regaleme sus datos de la siguiente manera para agendarte:
             const total = productos.reduce((sum, producto) => sum + producto.precio, 0);
             const resultado = document.getElementById('resultado');
             const totalConEnvio = total + 8000; // Agregar el costo de envío de 8000
-            resultado.value = `Subtotal: $${total.toFixed(2)}\nEnvío: $8000\nTotal: $${totalConEnvio.toFixed(2)}`;
+            resultado.value = `Subtotal: $${total}\nEnvío: $8000\nTotal: $${totalConEnvio}`;
         }
 
          function copiarResumen() {
             const datosCliente = document.getElementById('datosCliente').value;
-            const resumenProductos = productos.map(producto => `${producto.nombre}: $${producto.precio.toFixed(2)}`).join("\n");
+            const resumenProductos = productos.map(producto => `${producto.nombre}: $${producto.precio}`).join("\n");
             const total = productos.reduce((sum, producto) => sum + producto.precio, 0);
             const totalConEnvio = total + 8000; // Costo de envío
             const linkChat = document.getElementById('linkChatVendedor').value;
             const nombreCuenta = document.getElementById('nombreCuenta').value;
             
-            const resumen = `Datos del Cliente:\n${datosCliente}\n\nProductos:\n${resumenProductos}\n\nSubtotal: $${total.toFixed(2)}\nEnvío: $8000\nTotal: $${totalConEnvio.toFixed(2)}\n\nLink del Chat del Vendedor: ${linkChat}\nNombre de la Cuenta: ${nombreCuenta}`;
+            const resumen = `Datos del Cliente:\n${datosCliente}\n\nProductos:\n${resumenProductos}\n\nSubtotal: $${total}\nEnvío: $8000\nTotal: $${totalConEnvio}\n\nLink del Chat del Vendedor: ${linkChat}\nNombre de la Cuenta: ${nombreCuenta}`;
 
             navigator.clipboard.writeText(resumen).catch(err => {
                 console.error("Error al copiar resumen: ", err);
             });
+        function toggleSeccion() {
+            const contenedor = document.getElementById('contenedor');
+            if (contenedor.style.display === 'none') {
+                contenedor.style.display = 'block';
+            } else {
+                contenedor.style.display = 'none';
+            }
+             
         }
         // Código para hacer la caja movible
 const box = document.querySelector('.bienvenida-box');
@@ -222,6 +231,7 @@ document.addEventListener('mouseup', function() {
     isDragging = false;
     box.style.cursor = 'grab';
 });
+        
 
     </script>
 </body>
