@@ -185,12 +185,15 @@ Regaleme sus datos de la siguiente manera para agendarte:
             resultado.value = `Subtotal: $${total.toFixed(2)}\nEnvío: $8000\nTotal: $${totalConEnvio.toFixed(2)}`;
         }
 
-        function copiarResumen() {
+         function copiarResumen() {
             const datosCliente = document.getElementById('datosCliente').value;
             const resumenProductos = productos.map(producto => `${producto.nombre}: $${producto.precio.toFixed(2)}`).join("\n");
             const total = productos.reduce((sum, producto) => sum + producto.precio, 0);
             const totalConEnvio = total + 8000; // Costo de envío
-            const resumen = `Datos del Cliente:\n${datosCliente}\n\nProductos:\n${resumenProductos}\n\nSubtotal: $${total.toFixed(2)}\nEnvío: $8000\nTotal: $${totalConEnvio.toFixed(2)}`;
+            const linkChat = document.getElementById('linkChatVendedor').value;
+            const nombreCuenta = document.getElementById('nombreCuenta').value;
+            
+            const resumen = `Datos del Cliente:\n${datosCliente}\n\nProductos:\n${resumenProductos}\n\nSubtotal: $${total.toFixed(2)}\nEnvío: $8000\nTotal: $${totalConEnvio.toFixed(2)}\n\nLink del Chat del Vendedor: ${linkChat}\nNombre de la Cuenta: ${nombreCuenta}`;
 
             navigator.clipboard.writeText(resumen).catch(err => {
                 console.error("Error al copiar resumen: ", err);
